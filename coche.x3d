@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <X3D profile='Immersive'>
+      <Scene>
+        <shape>
+			<Appearance>
+				<Material diffuseColor=' 0 0 1'/>
+            </Appearance>
+            <Box size = '1 0.5 2'/>
+		</shape>
+		<Transform translation='0 0.5 0'>
+		<shape>
+			<Appearance>
+				<Material diffuseColor=' 0 0 1'/>
+            </Appearance>
+            <Box size = '1 0.5 1'/>
+		</shape>
+		</Transform>
+		<Transform DEF='limpiaizquierdo'
+		translation='0.35 0.25 0.5'
+		rotation='1 0 0 1.57'>
+		<Shape>
+			<Appearance>
+              <Material diffuseColor=' 1.0 1.0 1.0 '/>
+           </Appearance>
+              <Box size = '0.3 0.05 0.05'/>
+		</Shape>
+		</Transform>
+		<Transform DEF='limpiaderecho'
+		translation='-0.35 0.25 0.5'
+		rotation='1 0 0 1.57'>
+		<Shape>
+			<Appearance>
+              <Material diffuseColor=' 1.0 1.0 1.0 '/>
+           </Appearance>
+              <Box size = '0.3 0.05 0.05'/>
+		</Shape>
+		</Transform>
+		<Transform 
+		translation='0.35 0 -1'
+		rotation='1 0 0 1.57'>
+		<Shape>
+			<Appearance>
+              <Material DEF='Freno' diffuseColor=' 1.0 1.0 1.0 '/>
+           </Appearance>
+              <Box size = '0.2 0.1 0.1'/>
+		</Shape>
+		</Transform>
+		<Transform 
+		translation='-0.35 0 -1'
+		rotation='1 0 0 1.57'>
+		<Shape>
+			<Appearance>
+              <Material USE='Freno'/>
+           </Appearance>
+              <Box size = '0.2 0.1 0.1'/>
+		</Shape>
+		</Transform>
+		<Transform
+		translation='0.35 0 1'
+		rotation='1 0 0 1.57'>
+		<Shape>
+			<Appearance>
+              <Material DEF='Foco' diffuseColor=' 1.0 1.0 1.0 '/>
+           </Appearance>
+             <Cylinder height = ' 0.1 ' radius= ' 0.1 ' side = "true"/>
+		</Shape>
+		</Transform>
+		<Transform 
+		translation='-0.35 0 1'
+		rotation='1 0 0 1.57'>
+		<Shape>
+			<Appearance>
+              <Material USE='Foco'/>
+           </Appearance>
+             <Cylinder height = ' 0.1 ' radius= ' 0.1 ' side = "true"/>
+		</Shape>
+		</Transform>
+		<Transform DEF='RuedaIzquierdaAlante'
+		translation='0.6 -0.25 0.8'
+		rotation='0 0 1 -1.57'>
+			<Inline url='rueda.x3d'/>
+		</Transform>		
+		<Transform DEF='RuedaDerechaAlante'
+		translation='-0.6 -0.25 0.8'
+		rotation='0 0 1 -1.57'>
+			<Inline url='rueda.x3d'/> 
+		</Transform>
+		<Transform DEF='RuedaIzquierdaAtras'
+		translation='-0.6 -0.25 -0.8' 
+		rotation='0 0 1 -1.57'>
+			<Inline url='rueda.x3d'/> 
+		</Transform>
+		<Transform DEF='RuedaDerechaAtras'
+		translation='0.6 -0.25 -0.8'
+		rotation='0 0 1 1.57'>
+			<Inline url='rueda.x3d'/> 
+		</Transform>
+	  <TimeSensor DEF='Timer' loop='false'/>
+      <OrientationInterpolator DEF='Rotacion'
+        key=     '    0        0.25       0.5       0.75         1    '
+        keyValue='0 0 1 1.57   0 0 1 0.8   0 0 1 0   0 0 1 0.8  0 0 1 1.57 '/>
+     <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Rotacion' toField='set_fraction'/>
+    <ROUTE fromNode='Rotacion' fromField='value_changed' toNode='limpiaderecho' toField='set_rotation'/>
+	<ROUTE fromNode='Rotacion' fromField='value_changed' toNode='limpiaizquierdo' toField='set_rotation'/>
+	 </Scene>
+   </X3D>

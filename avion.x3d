@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?> <X3D profile='Immersive'>
+  <Scene>
+  <Transform DEF='avion'>
+  <Transform translation='0 0 20' rotation='0 1 0 3.1416'>
+  <!-- CUERPO -->
+	<Transform scale='6 1 1'>
+	<Shape>
+		<Sphere radius='1'/>
+		<Appearance>
+			<Material diffuseColor=' 0.6 0.6 0.6 '/>
+			<ImageTexture url='texturas/rojo.jpg'/>
+			<TextureTransform translation = '0 0.5' />
+		</Appearance>
+	</Shape>
+	</Transform>
+	
+	<!-- ALAS -->
+	<Transform scale='1 1 0.333' rotation='1 0 0 1.5708'>
+	<Shape>
+		<Cylinder height='10' radius='1'/>
+		<Appearance>
+			<Material diffuseColor=' 1 1 1 '/>
+			<ImageTexture url='texturas/gris.jpg'/>
+			<TextureTransform translation = '0.5 0' />
+		</Appearance>
+	</Shape>
+	</Transform>
+	
+	<!-- COLAS LATERALES-->
+	<Transform scale='1 1 0.333' rotation='1 0 0 1.5708' translation='5 0 0'>
+	<Shape>
+		<Cylinder height='3' radius='0.6'/>
+		<Appearance>
+			<Material diffuseColor=' 0.6 0.6 0.6 '/>
+			<ImageTexture url='texturas/gris.jpg'/>
+			<TextureTransform translation = '0.5 0' />
+		</Appearance>
+	</Shape>
+	</Transform>
+	
+	<!-- COLA SUPERIOR-->
+	<Transform scale='1 1 0.33' translation='5 0.7 0'>
+	<Shape>
+		<Cylinder height='1' radius='0.6'/>
+		<Appearance>
+			<Material diffuseColor=' 0.6 0.6 0.6 '/>
+			<ImageTexture url='texturas/gris.jpg'/>
+		</Appearance>
+	</Shape>
+	</Transform>
+	
+   </Transform><!-- TRANSLATION-->
+   </Transform><!-- ANIMACION-->
+   
+   
+     <!-- CODIGO PARA ANIMACIÓN -->
+  <TimeSensor DEF='TimerAvion' loop='true' cycleInterval='2'/>
+  <OrientationInterpolator DEF='RotacionAvion' 
+            key   = '    0          0.25             0.5           0.75                  1'
+            keyValue= '0 1 0 0    0 1 0 1.57    0 1 0 3.1415     0 1 0 -1.57         0 1 0 0' />
+  <ROUTE fromNode='TimerAvion' fromField='fraction_changed' toNode='RotacionAvion' toField='set_fraction'/>
+  <ROUTE fromNode='RotacionAvion' fromField='value_changed' toNode='avion' toField='set_rotation'/>
+ </Scene>
+</X3D>
