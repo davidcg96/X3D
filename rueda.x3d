@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <X3D profile='Immersive'>
+      <Scene>
+        <Shape>
+           <Appearance>
+              <Material diffuseColor=' 1.0 1.0 1.0 '/>
+			  <ImageTexture url='texturas/rueda.jpg'/>
+           </Appearance>
+             <Cylinder height = ' 0.15 ' radius= ' 0.25 ' side = "true"/>
+        </Shape>
+     </Scene>
+   </X3D>

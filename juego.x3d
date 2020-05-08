@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <X3D profile='Immersive'>
+    <Scene>
+	<PointLight color='0.8 0.8 0.0' location='0 20 5'/>
+	<!-- DEFINO la camara que va ir delante del muñeco para la colision -->
+	<Transform DEF='camaramuñeco'
+	translation ='0 1 1'>
+	<Viewpoint description='primerapersona' orientation='0 0 0 0' position=' 0 1 1'/>
+	</Transform>
+	<Transform DEF='camaramuñecodetras'
+	translation ='0 10 15'>
+	<Viewpoint description='tercerapersona' orientation='1 0 0 -0.35' position=' 0 10 15'/>
+	</Transform>
+	
+	<!--defino panorama -->
+	 <Background 
+        backUrl=  'texturas/bosque/forest_1_back.jpg'
+        bottomUrl='texturas/bosque/forest_1_bottom.jpg'
+        frontUrl= 'texturas/bosque/forest_1_front.jpg'
+        leftUrl=  'texturas/bosque/forest_1_left.jpg'
+        rightUrl= 'texturas/bosque/forest_1_right.jpg'
+        topUrl=   'texturas/bosque/forest_1_top.jpg'/> 
+	<Collision DEF='COLLIDE' enabled='true' bboxCenter='0 0 0' bboxSize='-1 -1 -1'>
+	<Transform translation='5 2.5 -20'
+	rotation='0 1 0 1.57' >
+	<Shape>
+		<Appearance>
+		<ImageTexture url='texturas/muro.jpg'/>
+		 <Material DEF='colormuro' diffuseColor=' 1 0 0 '/>
+		</Appearance>
+		<Box size = ' 40 5 0.5 '/>
+	</Shape>
+	</Transform>
+	<!-- Muros del juego, parte izquierda -->
+	<Transform translation='-5 2.5 -20'
+	rotation='0 1 0 -1.57'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		 <ImageTexture url='texturas/muro.jpg'/>
+		</Appearance>
+		<Box size = ' 40 5 0.5 '/>
+	</Shape>
+	</Transform>
+	<!-- muro del suelo -->
+	<Transform translation='0 -0.25 -20'
+	rotation='1 0 -1.57'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		 <ImageTexture url='texturas/suelo.jpg'/>
+		</Appearance>
+		<Box size = ' 10.5 0.5 40 '/>
+	</Shape>
+	</Transform>
+	
+	<!-- obstaculos -->
+	<Transform translation='-2.25 1.25 -1'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='2.25 1.25 -5'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='-2.25 1.25 -9'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='-2.25 1.25 -13'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='2.25 1.25 -17'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='2.25 1.25 -21'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='-2.25 1.25 -25'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='2.25 1.25 -29'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	<!-- obstaculos -->
+	<Transform translation='-2.25 1.25 -33'>
+	<Shape>
+		<Appearance>
+		 <Material USE='colormuro'/>
+		</Appearance>
+		<Box size = '  5 2.5 1'/>
+	</Shape>
+	</Transform>
+	</Collision>
+	<!-- defino el peon que se mueve con las teclas -->
+	<Transform DEF='peon'
+		translation ='0 1.0 2'>
+	<!-- defino la cabeza -->
+		<Transform translation='0 1.5 0'>
+			<Shape>
+				<Appearance>
+					<Material  diffuseColor=' 1 0 0 '/>
+				</Appearance>
+				<Sphere radius = '1'/>
+			</Shape>
+		</Transform>
+	  <!-- defino cuerpo -->
+			<Shape>
+				<Appearance>
+					<Material DEF='mat' diffuseColor=' 1.0 0.0 0.0 '/>
+				</Appearance>
+				<Cone height= '2' bottomRadius= '1' bottom = "TRUE"/>
+			</Shape>
+	</Transform>
+	<!-- defino sensor tecla -->
+  <KeySensor DEF='sensor'/>
+  
+  <!-- defino script -->
+ <Script DEF='Movimientotecla' url='Movimientotecla.js'>  
+	  <field accessType='inputOnly' name='estado' type='SFString'/>
+	  <field accessType='inputOnly' name='colision' type='SFTime'/>
+      <field accessType='outputOnly' name='matiz' type='SFColor'/>
+	  <field accessType='initializeOnly' name='colormuro' type='SFNode'>
+			<Transform USE='colormuro'/>
+	  </field>
+	  <field accessType='initializeOnly' name='peon' type='SFNode'>
+			<Transform USE='peon'/>
+	  </field>
+	  <field accessType='initializeOnly' name='camaramuñeco' type='SFNode'>
+			<Transform USE='camaramuñeco'/>
+	  </field>
+	  <field accessType='initializeOnly' name='camaramuñecodetras' type='SFNode'>
+			<Transform USE='camaramuñecodetras'/>
+	  </field>
+  </Script>
+  <TimeSensor DEF='Timer' cycleInterval='1.5' loop='true'/> 
+  <ColorInterpolator DEF='Coloreado'
+            key        = '   0   0.125  0.25 0.375   0.5  0.625    0.75   0.875    1'
+            keyValue= '1 0 0   1 1 0    0 1 0   0 1 1  0 0 1  1 0 1  1 1 1  0 0 0  1 0 0'/>
+  
+    <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Coloreado' toField='set_fraction'/>
+    <ROUTE fromNode='Coloreado' fromField='value_changed' toNode='colormuro' toField='set_diffuseColor'/>
+	
+     <ROUTE fromNode='sensor' fromField='keyPress' toNode='Movimientotecla' toField='estado'/>
+     <ROUTE fromNode='COLLIDE' fromField='collideTime' toNode='Movimientotecla' toField='colision' />
+	 <ROUTE fromNode='Movimientotecla' fromField='matiz' toNode='mat' toField='emissiveColor'/>
+ </Scene>
+  </X3D>
